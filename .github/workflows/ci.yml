@@ -29,7 +29,7 @@ jobs:
                 pip install -r api/requirements.txt
 
             - name: Lancement de pylint
-              run: pylint api/
+              run: pytest api/
 
             - name: Message de succès
               run: echo "Tous les tests sont passés avec succès"
