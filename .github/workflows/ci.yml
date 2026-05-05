@@ -11,7 +11,7 @@ on:
             - main
 
 jobs:
-    pylint:
+    test:
         name: test
         runs-on: ubuntu-latest
         steps:
@@ -33,3 +33,14 @@ jobs:
 
             - name: Message de succès
               run: echo "Tous les tests sont passés avec succès"
+
+    build:
+        name: build
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+        - name: Récupération du code
+          uses: actions/checkout@v3
+
+        - name: Construction de l'image Docker
+          run: docker build -t flask-api api/
